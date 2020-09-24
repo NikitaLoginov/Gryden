@@ -4,36 +4,41 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-    int _playerHP = 3;
-    float _playerEnergy = 1.0f; // 100%
 
+    public GameObject[] enemies;
+    public GameObject[] nodes;
+    public GameObject player;
+    public BoxCollider2D playerCollider;
 
-    public int PlayerHP
-    {
-        get { return _playerHP; }
-        set 
-        { 
-            _playerHP = value;
-            Debug.LogFormat("Player HP = {0}", _playerHP); 
-        }
-    }
+    //attack
+    public bool playerCanAttack = false; // refactor
 
-    GameObject[] _enemies;
-    Queue<EnemyController2D> _movingEnemies = new Queue<EnemyController2D>();
+    public bool playerCanAttackUp = false;
+    public bool playerCanAttackDown = false;
+    public bool playerCanAttackLeft = false;
+    public bool playerCanAttackRight = false;
+
+    public bool enemyCanAttack = false;
+
+    public static GameHandler Instance; // singleton
 
     private void Awake()
     {
-        _enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Instance = this; // singleton
 
-        Debug.Log("Enemy array length: " + _enemies.Length);
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerCollider = player.GetComponent<BoxCollider2D>();
 
-        for (int i = 0; i < _enemies.Length; i++)
-        {
-            if (_enemies[i] != null)
-            {
-                _movingEnemies.Enqueue(_enemies[i].GetComponent<EnemyController2D>());
-                Debug.Log("Enemies in queue: " + _movingEnemies.Count);
-            }
-        }
+        nodes = FindObjectsOfType<GameObject>(); //????
+
+        Debug.Log("Enemy array length: " + enemies.Length);
+
+    }
+
+    public float TakeDamage(float damage, float hp)
+    {
+        hp -= damage;
+        return hp;
     }
 }

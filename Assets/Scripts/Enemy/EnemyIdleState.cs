@@ -20,6 +20,11 @@ public class EnemyIdleState : EnemyBaseState
         {
             enemy.elapsedTime = 0.0f;
             enemy.FindPath();
+
+            if (enemy.pathArray.Count == 1)
+            {
+                enemy.TransitionToState(enemy.attackState);
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridManager2D : MonoBehaviour
@@ -38,6 +39,7 @@ public class GridManager2D : MonoBehaviour
     private void Awake()
     {
         _obstacleList = GameObject.FindGameObjectsWithTag("Obstacle");
+
         CalculateObstacles();
     }
 

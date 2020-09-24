@@ -12,9 +12,28 @@ public class PlayerControllerSimple : MonoBehaviour
     public Node2D StartNode { get; set; }
     public Node2D GoalNode { get; set; }
     public ArrayList pathArray;
-    void Start()
+
+    //player stats
+    float _startPlayerHP = 3.0f;
+    public float PlayerHP
+    { 
+        get { return _startPlayerHP; }
+        set { _startPlayerHP = value; }
+    }
+
+    public float currentPlayerHP;
+
+    float _playerDMG = 1;
+    public float PlayerDamage
+    {
+        get { return _playerDMG; }
+        set { _playerDMG = value; }
+    }
+
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        currentPlayerHP = _startPlayerHP;
     }
 
     void Update()
@@ -32,16 +51,13 @@ public class PlayerControllerSimple : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        
-    }
+    
     private void MovePlayer()
     {
         if (pathArray == null)
             return;
 
-        if (pathArray.Count > 0)
+        if (pathArray.Count > 1)
         {
             Node2D node2d = (Node2D)pathArray[1];
             _rb.MovePosition(node2d.position);
@@ -73,11 +89,13 @@ public class PlayerControllerSimple : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log($"Position of mouse: {mousePosition}");
+            //Debug.Log($"Position of mouse: {mousePosition}");
             return new Vector2(mousePosition.x, mousePosition.y);
         }
         return null;
     }
+
+   
 
     void OnDrawGizmos()
     {

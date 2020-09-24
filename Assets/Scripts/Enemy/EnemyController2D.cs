@@ -23,9 +23,28 @@ public class EnemyController2D : MonoBehaviour
     public EnemyBaseState CurrentState { get { return _currentState; } }
     public readonly EnemyIdleState idleState = new EnemyIdleState();
     public readonly EnemyMoveState moveState = new EnemyMoveState();
+    public readonly EnemyAttackState attackState = new EnemyAttackState();
+
+    //enemy stats
+    float _startEnemyHP = 1;
+    public float StartEnemyHP
+    { 
+        get { return _startEnemyHP; }
+        set { _startEnemyHP = value; }
+    }
+
+    public float currentEnemyHP;
+
+    float _enemyDMG = 1;
+    public float EnemyDamage
+    {
+        get { return _enemyDMG; }
+        set { _enemyDMG = value; }
+    }
 
     void Start()
     {
+        currentEnemyHP = _startEnemyHP;
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         FindPath();
@@ -39,6 +58,8 @@ public class EnemyController2D : MonoBehaviour
         elapsedTime += Time.deltaTime;
 
         _currentState.EnemyUpdate(this);
+
+        DropDead();
 
     }
 
@@ -76,6 +97,15 @@ public class EnemyController2D : MonoBehaviour
     {
         _currentState = state;
         _currentState.EnterState(this);
+    }
+
+    void DropDead()
+    {
+        if (currentEnemyHP <= 0)
+        {
+            //play animation
+            Destroy(gameObject);
+        }
     }
 
     // draw path with Gismos
