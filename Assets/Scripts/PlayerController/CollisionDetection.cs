@@ -72,21 +72,33 @@ public class CollisionDetection : MonoBehaviour
         if (hit2dUp.collider != null && hit2dUp.collider.tag == "Enemy")
         {
             Debug.Log("Ray hit enemy");
+
+            GameHandler.Instance.GetEnemyName(hit2dUp.collider); // sending enemy name to Game Handler
+
             GameHandler.Instance.playerCanAttackUp = true;
         }
         if (hit2dDown.collider != null && hit2dDown.collider.tag == "Enemy")
         {
             Debug.Log("Ray hit enemy");
+
+            GameHandler.Instance.GetEnemyName(hit2dDown.collider); // sending enemy name to Game Handler
+
             GameHandler.Instance.playerCanAttackDown = true;
         }
         if (hit2dLeft.collider != null && hit2dLeft.collider.tag == "Enemy")
         {
             Debug.Log("Ray hit enemy");
+
+            GameHandler.Instance.GetEnemyName(hit2dLeft.collider); // sending enemy name to Game Handler
+
             GameHandler.Instance.playerCanAttackLeft = true;
         }
         if (hit2dRight.collider != null && hit2dRight.collider.tag == "Enemy")
         {
             Debug.Log("Ray hit enemy");
+
+            GameHandler.Instance.GetEnemyName(hit2dRight.collider); // sending enemy name to Game Handler
+
             GameHandler.Instance.playerCanAttackRight = true;
         }
     }

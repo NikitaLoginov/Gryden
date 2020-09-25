@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttackButton : MonoBehaviour
 {
+    GameObject enemy;
     public void OnAttackButtonPress()
     {
         //if (GameHandler.Instance.playerCanAttack)
@@ -43,9 +44,10 @@ public class AttackButton : MonoBehaviour
         Debug.Log("Player can't attack");
     }
 
-    void CalculateDamage() //REFACTOR FOR MULTIPLE ENEMIES!!
+    void CalculateDamage() //finding which enemy to attack by name that we set up in CollisionDetection
     {
-        GameHandler.Instance.enemies[0].GetComponent<EnemyController2D>().currentEnemyHP = GameHandler.Instance.TakeDamage(GameHandler.Instance.player.GetComponent<PlayerControllerSimple>().PlayerDamage,
-                GameHandler.Instance.enemies[0].GetComponent<EnemyController2D>().currentEnemyHP);
+        enemy = GameObject.Find(GameHandler.Instance.EnemyName);
+        enemy.GetComponent<EnemyController2D>().currentEnemyHP = GameHandler.Instance.TakeDamage(GameHandler.Instance.player.GetComponent<PlayerControllerSimple>().PlayerDamage,
+                enemy.GetComponent<EnemyController2D>().currentEnemyHP);
     }
 }

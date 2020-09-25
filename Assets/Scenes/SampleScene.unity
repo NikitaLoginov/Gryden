@@ -990,6 +990,7 @@ MonoBehaviour:
   playerCanAttackLeft: 0
   playerCanAttackRight: 0
   enemyCanAttack: 0
+  playerAnim: {fileID: 0}
 --- !u!4 &263062443
 Transform:
   m_ObjectHideFlags: 0
@@ -6913,7 +6914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1262975276
 Rigidbody2D:
   serializedVersion: 4

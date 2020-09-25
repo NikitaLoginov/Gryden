@@ -19,6 +19,9 @@ public class GameHandler : MonoBehaviour
 
     public bool enemyCanAttack = false;
 
+    string enemyName;
+    public string EnemyName { get { return enemyName;} private set { enemyName = value; } }
+
     //Animations
     public Animator playerAnim;
 
@@ -41,5 +44,11 @@ public class GameHandler : MonoBehaviour
     {
         hp -= damage;
         return hp;
+    }
+
+    public string GetEnemyName(Collider2D collider)
+    {
+        EnemyName = collider.name;
+        return EnemyName;
     }
 }
