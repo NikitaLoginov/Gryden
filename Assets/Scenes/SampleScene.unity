@@ -985,7 +985,10 @@ MonoBehaviour:
   nodes: []
   player: {fileID: 0}
   playerCollider: {fileID: 0}
-  playerCanAttack: 0
+  playerCanAttackUp: 0
+  playerCanAttackDown: 0
+  playerCanAttackLeft: 0
+  playerCanAttackRight: 0
   enemyCanAttack: 0
 --- !u!4 &263062443
 Transform:

@@ -15,11 +15,11 @@ public class PlayerControllerSimple : MonoBehaviour
 
     //player stats
     float _startPlayerHP = 3.0f;
-    public float PlayerHP
-    { 
-        get { return _startPlayerHP; }
-        set { _startPlayerHP = value; }
-    }
+    //public float PlayerHP
+    //{ 
+    //    get { return _startPlayerHP; }
+    //    set { _startPlayerHP = value; }
+    //}
 
     public float currentPlayerHP;
 
@@ -33,6 +33,7 @@ public class PlayerControllerSimple : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+
         currentPlayerHP = _startPlayerHP;
     }
 

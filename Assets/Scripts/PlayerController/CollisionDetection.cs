@@ -62,11 +62,32 @@ public class CollisionDetection : MonoBehaviour
 
     void CheckRayCast()
     {
-        if (hit2dUp.collider == enemyCol || hit2dDown.collider == enemyCol ||
-            hit2dLeft.collider == enemyCol || hit2dRight.collider == enemyCol)
+        //if (hit2dUp.collider == enemyCol || hit2dDown.collider == enemyCol ||
+        //    hit2dLeft.collider == enemyCol || hit2dRight.collider == enemyCol)
+        //{
+        //    Debug.Log("Ray hit enemy");
+        //    GameHandler.Instance.playerCanAttack = true;
+        //}
+
+        if (hit2dUp.collider != null && hit2dUp.collider.tag == "Enemy")
         {
             Debug.Log("Ray hit enemy");
-            GameHandler.Instance.playerCanAttack = true;
-        } 
+            GameHandler.Instance.playerCanAttackUp = true;
+        }
+        if (hit2dDown.collider != null && hit2dDown.collider.tag == "Enemy")
+        {
+            Debug.Log("Ray hit enemy");
+            GameHandler.Instance.playerCanAttackDown = true;
+        }
+        if (hit2dLeft.collider != null && hit2dLeft.collider.tag == "Enemy")
+        {
+            Debug.Log("Ray hit enemy");
+            GameHandler.Instance.playerCanAttackLeft = true;
+        }
+        if (hit2dRight.collider != null && hit2dRight.collider.tag == "Enemy")
+        {
+            Debug.Log("Ray hit enemy");
+            GameHandler.Instance.playerCanAttackRight = true;
+        }
     }
 }
