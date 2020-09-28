@@ -8,7 +8,6 @@ public class GameHandler : MonoBehaviour
     public GameObject[] enemies;
     public GameObject[] nodes;
     public GameObject player;
-    public BoxCollider2D playerCollider;
 
     //attack
 
@@ -17,6 +16,7 @@ public class GameHandler : MonoBehaviour
     public bool playerCanAttackLeft = false;
     public bool playerCanAttackRight = false;
 
+    // enemy attack
     public bool enemyCanAttack = false;
 
     string enemyName;
@@ -24,6 +24,7 @@ public class GameHandler : MonoBehaviour
 
     //Animations
     public Animator playerAnim;
+
 
     public static GameHandler Instance; // singleton
 
@@ -33,7 +34,7 @@ public class GameHandler : MonoBehaviour
 
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
-        playerCollider = player.GetComponent<BoxCollider2D>();
+
         playerAnim = player.transform.GetChild(0).GetComponent<Animator>();
 
         Debug.Log("Enemy array length: " + enemies.Length);

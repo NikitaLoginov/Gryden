@@ -7,15 +7,6 @@ public class AttackButton : MonoBehaviour
     GameObject enemy;
     public void OnAttackButtonPress()
     {
-        //if (GameHandler.Instance.playerCanAttack)
-        //{
-        //    CalculateDamageForEnemy();
-
-        //    //animation
-
-        //    GameHandler.Instance.playerCanAttack = false;
-        //}
-
         if (GameHandler.Instance.playerCanAttackUp)
         {
             CalculateDamage();

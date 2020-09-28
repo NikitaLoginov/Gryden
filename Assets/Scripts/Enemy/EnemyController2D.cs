@@ -11,6 +11,8 @@ public class EnemyController2D : MonoBehaviour
     [HideInInspector]
     public GameObject player;
     [HideInInspector]
+    public PlayerControllerSimple playerController;
+    [HideInInspector]
     public float elapsedTime = 0.0f;
 
     public Node2D StartNode { get; set; }
@@ -42,11 +44,18 @@ public class EnemyController2D : MonoBehaviour
         set { _enemyDMG = value; }
     }
 
+    //Collision detection
+    public CollisionDetection collisionDetection;
+
     void Start()
     {
         currentEnemyHP = _startEnemyHP;
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerControllerSimple>();
+
+        collisionDetection = GetComponent<CollisionDetection>();
+
         FindPath();
 
         TransitionToState(idleState);

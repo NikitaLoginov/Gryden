@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    GameObject playerObj;
-    Collider2D playerCollider;
-    PlayerControllerSimple player;
+    GameObject playerObj; //????
+    PlayerControllerSimple player; //????
 
-    GameObject enemyObj;
-    Collider2D enemyCol;
-    EnemyController2D enemy;
-    GameObject[] enemies;
+    Collider2D boxCollider;
 
     //Raycast
     RaycastHit2D hit2dDown;
@@ -25,20 +21,16 @@ public class CollisionDetection : MonoBehaviour
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
         player = playerObj.GetComponent<PlayerControllerSimple>();
-        playerCollider = playerObj.GetComponent<BoxCollider2D>();
+
+        boxCollider = GetComponent<BoxCollider2D>();
 
         Debug.Log($"Player's current hp: {player.currentPlayerHP}");
 
-        enemyObj = GameObject.Find("Rat");
-        //enemy = enemyObj.GetComponent<EnemyController2D>();
-        enemyCol = enemyObj.GetComponent<BoxCollider2D>();
-
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     void FixedUpdate()
     {
-        GameHandler.Instance.playerCollider.enabled = false;
+        boxCollider.enabled = false;
         
         hit2dDown = Physics2D.Raycast(transform.position, Vector2.down, 1.0f);
         hit2dUp = Physics2D.Raycast(transform.position, Vector2.up, 1.0f);
@@ -54,21 +46,14 @@ public class CollisionDetection : MonoBehaviour
         //Debug.Log($"Raycast info: {hit2dDown.collider.tag}\n{hit2dUp.collider.tag}\n{hit2dLeft.collider.tag}\n{hit2dRight.collider.tag}"); debug doesn't work
 
         CheckRayCast();
-        GameHandler.Instance.playerCollider.enabled = true;
-
+        boxCollider.enabled = true;
     }
 
     
 
     void CheckRayCast()
     {
-        //if (hit2dUp.collider == enemyCol || hit2dDown.collider == enemyCol ||
-        //    hit2dLeft.collider == enemyCol || hit2dRight.collider == enemyCol)
-        //{
-        //    Debug.Log("Ray hit enemy");
-        //    GameHandler.Instance.playerCanAttack = true;
-        //}
-
+        // player attacks
         if (hit2dUp.collider != null && hit2dUp.collider.tag == "Enemy")
         {
             Debug.Log("Ray hit enemy");
@@ -100,6 +85,34 @@ public class CollisionDetection : MonoBehaviour
             GameHandler.Instance.GetEnemyName(hit2dRight.collider); // sending enemy name to Game Handler
 
             GameHandler.Instance.playerCanAttackRight = true;
+        }
+
+        //enemy attacks
+        if (hit2dUp.collider != null && hit2dUp.collider.tag == "Player")
+        {
+            Debug.Log("Ray hit player");
+
+            GameHandler.Instance.enemyCanAttack = true;
+        }
+
+        if (hit2dDown.collider != null && hit2dDown.collider.tag == "Player")
+        {
+            Debug.Log("Ray hit player");
+
+            GameHandler.Instance.enemyCanAttack = true;
+        }
+        if (hit2dLeft.collider != null && hit2dLeft.collider.tag == "Player")
+        {
+            Debug.Log("Ray hit player");
+
+            GameHandler.Instance.enemyCanAttack = true;
+
+        }
+        if (hit2dRight.collider != null && hit2dRight.collider.tag == "Player")
+        {
+            Debug.Log("Ray hit player");
+
+            GameHandler.Instance.enemyCanAttack = true;
         }
     }
 }
