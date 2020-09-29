@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-
     public GameObject[] enemies;
     public GameObject[] nodes;
     public GameObject player;
@@ -51,5 +50,15 @@ public class GameHandler : MonoBehaviour
     {
         EnemyName = collider.name;
         return EnemyName;
+    }
+
+    // death method
+    public void DropDead(float currentHP, GameObject obj)
+    {
+        if (currentHP <= 0)
+        {
+            //play animation
+            Destroy(obj);
+        }
     }
 }

@@ -68,8 +68,8 @@ public class EnemyController2D : MonoBehaviour
 
         _currentState.EnemyUpdate(this);
 
-        DropDead();
-
+        //DropDead();
+        GameHandler.Instance.DropDead(currentEnemyHP, this.gameObject);
     }
 
     private void FixedUpdate()

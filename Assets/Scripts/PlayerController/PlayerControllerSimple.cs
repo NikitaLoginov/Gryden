@@ -50,6 +50,8 @@ public class PlayerControllerSimple : MonoBehaviour
                 TurnHandler.Instance.TurnSwitcher();
             }
         }
+        //check if dead
+        GameHandler.Instance.DropDead(currentPlayerHP, this.gameObject);
     }
 
     
