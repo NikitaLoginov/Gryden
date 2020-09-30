@@ -15,11 +15,6 @@ public class PlayerControllerSimple : MonoBehaviour
 
     //player stats
     float _startPlayerHP = 3.0f;
-    //public float PlayerHP
-    //{ 
-    //    get { return _startPlayerHP; }
-    //    set { _startPlayerHP = value; }
-    //}
 
     public float currentPlayerHP;
 
@@ -30,9 +25,17 @@ public class PlayerControllerSimple : MonoBehaviour
         set { _playerDMG = value; }
     }
 
+    //Enemy
+    GameObject enemy;
+
+    //Camera
+    Camera camera;
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        camera = Camera.main;
 
         currentPlayerHP = _startPlayerHP;
     }
@@ -43,7 +46,12 @@ public class PlayerControllerSimple : MonoBehaviour
         {
             FindPath();
             _clickCounter++;
-            if (Input.GetMouseButtonDown(0) && _clickCounter > 0)
+
+            if (Input.GetMouseButtonDown(0) && _clickCounter > 0 && CheckIfCanBump())
+            {
+                BumpAttack();
+            }
+            if (Input.GetMouseButtonDown(0) && _clickCounter > 1)
             {
                 MovePlayer();
                 _clickCounter = 0;
@@ -54,7 +62,52 @@ public class PlayerControllerSimple : MonoBehaviour
         GameHandler.Instance.DropDead(currentPlayerHP, this.gameObject);
     }
 
-    
+   
+    private bool CheckIfCanBump() // checking if enemy is in bump range
+    {
+        if (GameHandler.Instance.playerCanAttackUp || GameHandler.Instance.playerCanAttackDown
+            || GameHandler.Instance.playerCanAttackLeft || GameHandler.Instance.playerCanAttackRight)
+            return true;
+        else
+            return false;
+    }
+    void BumpAttack() //checking from what side we have enemy and bumping it
+    {
+        if (GameHandler.Instance.playerCanAttackUp)
+        {
+            GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkUp");
+            CalculateDamage();
+            GameHandler.Instance.playerCanAttackUp = false;
+        }
+        if (GameHandler.Instance.playerCanAttackDown)
+        {
+            GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkDown");
+            CalculateDamage();
+            GameHandler.Instance.playerCanAttackDown = false;
+        }
+        if (GameHandler.Instance.playerCanAttackLeft)
+        {
+            GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkLeft");
+            CalculateDamage();
+            GameHandler.Instance.playerCanAttackLeft = false;
+        }
+        if (GameHandler.Instance.playerCanAttackRight)
+        {
+            GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkRight");
+            CalculateDamage();
+            GameHandler.Instance.playerCanAttackRight = false;
+        }
+
+        Debug.Log("Player can't attack");
+    }
+
+    private void CalculateDamage()
+    {
+        enemy = GameObject.Find(GameHandler.Instance.EnemyName);
+        enemy.GetComponent<EnemyController2D>().currentEnemyHP = GameHandler.Instance.TakeDamage(GameHandler.Instance.player.GetComponent<PlayerControllerSimple>().PlayerDamage,
+                enemy.GetComponent<EnemyController2D>().currentEnemyHP);
+    }
+
     private void MovePlayer()
     {
         if (pathArray == null)
@@ -98,7 +151,6 @@ public class PlayerControllerSimple : MonoBehaviour
         return null;
     }
 
-   
 
     void OnDrawGizmos()
     {

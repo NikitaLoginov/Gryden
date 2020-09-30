@@ -9,26 +9,26 @@ public class AttackButton : MonoBehaviour
     {
         if (GameHandler.Instance.playerCanAttackUp)
         {
-            CalculateDamage();
             GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkUp");
+            CalculateDamage();
             GameHandler.Instance.playerCanAttackUp = false;
         }
         if (GameHandler.Instance.playerCanAttackDown)
         {
-            CalculateDamage();
             GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkDown");
+            CalculateDamage();
             GameHandler.Instance.playerCanAttackDown = false;
         }
         if (GameHandler.Instance.playerCanAttackLeft)
         {
-            CalculateDamage();
             GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkLeft");
+            CalculateDamage();
             GameHandler.Instance.playerCanAttackLeft = false;
         }
         if (GameHandler.Instance.playerCanAttackRight)
         {
-            CalculateDamage();
             GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkRight");
+            CalculateDamage();
             GameHandler.Instance.playerCanAttackRight = false;
         }
 

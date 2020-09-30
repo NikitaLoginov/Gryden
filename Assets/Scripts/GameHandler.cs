@@ -16,7 +16,11 @@ public class GameHandler : MonoBehaviour
     public bool playerCanAttackRight = false;
 
     // enemy attack
-    public bool enemyCanAttack = false;
+
+    public bool enemyCanAttackUp = false;
+    public bool enemyCanAttackDown = false;
+    public bool enemyCanAttackLeft = false;
+    public bool enemyCanAttackRight = false;
 
     string enemyName;
     public string EnemyName { get { return enemyName;} private set { enemyName = value; } }

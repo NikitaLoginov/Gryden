@@ -47,6 +47,9 @@ public class EnemyController2D : MonoBehaviour
     //Collision detection
     public CollisionDetection collisionDetection;
 
+    //animations
+    public Animator enemyAnimator;
+
     void Start()
     {
         currentEnemyHP = _startEnemyHP;
@@ -55,6 +58,8 @@ public class EnemyController2D : MonoBehaviour
         playerController = player.GetComponent<PlayerControllerSimple>();
 
         collisionDetection = GetComponent<CollisionDetection>();
+
+        enemyAnimator = transform.GetChild(0).GetComponent<Animator>();
 
         FindPath();
 
@@ -68,7 +73,6 @@ public class EnemyController2D : MonoBehaviour
 
         _currentState.EnemyUpdate(this);
 
-        //DropDead();
         GameHandler.Instance.DropDead(currentEnemyHP, this.gameObject);
     }
 
@@ -106,15 +110,6 @@ public class EnemyController2D : MonoBehaviour
     {
         _currentState = state;
         _currentState.EnterState(this);
-    }
-
-    void DropDead()
-    {
-        if (currentEnemyHP <= 0)
-        {
-            //play animation
-            Destroy(gameObject);
-        }
     }
 
     // draw path with Gismos
