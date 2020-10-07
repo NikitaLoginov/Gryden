@@ -7,7 +7,7 @@ public class EnemyIdleState : EnemyBaseState
 {
     public override void EnemyFixedUpdate(EnemyController2D enemy)
     {
-        if (TurnHandler.Instance.isEnemyTurn)
+        if (TurnHandler.Instance.isEnemyTurn && !TurnHandler.Instance.isWaiting)
         {
             enemy.TransitionToState(enemy.moveState);
         }

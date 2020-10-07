@@ -37,21 +37,24 @@ public class PlayerControllerSimple : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            FindPath();
-            _clickCounter++;
+        if (TurnHandler.Instance.isPlayersTurn)
+        { 
+            if (Input.GetMouseButtonDown(0))
+            {
+                FindPath();
+                _clickCounter++;
 
-            if (Input.GetMouseButtonDown(0) && _clickCounter > 0 && CheckIfCanBump())
-            {
-                BumpAttack();
-            }
-            if (Input.GetMouseButtonDown(0) && _clickCounter > 1)
-            {
-                MovePlayer();
-                Debug.Log("Player Moved");
-                _clickCounter = 0;
-                TurnHandler.Instance.TurnSwitcher();
+                if (Input.GetMouseButtonDown(0) && _clickCounter > 0 && CheckIfCanBump())
+                {
+                    BumpAttack();
+                }
+                if (Input.GetMouseButtonDown(0) && _clickCounter > 1)
+                {
+                    MovePlayer();
+                    Debug.Log("Player Moved");
+                    _clickCounter = 0;
+                    TurnHandler.Instance.TurnSwitcher();
+                }
             }
         }
         //check if dead

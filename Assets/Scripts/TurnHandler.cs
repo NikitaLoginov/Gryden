@@ -10,7 +10,7 @@ public class TurnHandler : MonoBehaviour
 
     //time
     float elaspedTime = 0.0f;
-    float intervalTime = 1.0f;
+    float intervalTime = 2.0f;
 
     public static TurnHandler Instance;
 
@@ -24,36 +24,52 @@ public class TurnHandler : MonoBehaviour
     {
         
         elaspedTime += Time.deltaTime;
+        if (isWaiting)
+        { 
+            Wait();
+            TurnSwitcher();
+        }
     }
 
-    public void TurnSwitcher() // enemy moves once in two turns. need to fix
+    public void TurnSwitcher() // still bit buggy but kinda works. needs testing
     {
 
-        if (isPlayersTurn && !isWaiting)
+        if (isPlayersTurn)
+        {
+            Debug.Log("Wait for it");
+
+            
+            isPlayersTurn = false;
+            isWaiting = true;
+        }
+
+        else if (isWaiting)
         {
             Debug.Log("Enemy Turn");
-            isPlayersTurn = false;
-            isEnemyTurn = true;
-            isWaiting = true;
-        }
-
-        else if (isEnemyTurn && !isWaiting)
-        {
-            Debug.Log("Player's Turn");
 
             isEnemyTurn = false;
+            isPlayersTurn = false;
+        }
+        else if (isEnemyTurn)
+        {
             isPlayersTurn = true;
-            isWaiting = true;
+            isEnemyTurn = false;
+        }
+        else if (!isWaiting) // has to be last in order!
+        {
+            isPlayersTurn = false;
+            isEnemyTurn = true;
         }
 
-        if (elaspedTime < intervalTime)
-        {
-            isWaiting = true;
-        }
+    }
+
+    void Wait()
+    { 
         if (elaspedTime >= intervalTime)
         {
             isWaiting = false;
             elaspedTime = 0.0f;
         }
+    
     }
 }
