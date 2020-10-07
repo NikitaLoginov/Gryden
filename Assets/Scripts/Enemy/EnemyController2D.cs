@@ -14,12 +14,12 @@ public class EnemyController2D : MonoBehaviour
     public PlayerControllerSimple playerController;
     [HideInInspector]
     public float elapsedTime = 0.0f;
+    public float intervalTime = 1.0f;
 
     public Node2D StartNode { get; set; }
     public Node2D GoalNode { get; set; }
     public ArrayList pathArray;
     [HideInInspector]
-    public float intervalTime = 1.0f;
 
     EnemyBaseState _currentState;
     public EnemyBaseState CurrentState { get { return _currentState; } }
@@ -102,7 +102,6 @@ public class EnemyController2D : MonoBehaviour
         {
             Node2D node2d = (Node2D)pathArray[1];
             rb2d.MovePosition(node2d.position);
-            TurnHandler.Instance.TurnSwitcher();
         }
     }
 

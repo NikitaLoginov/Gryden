@@ -28,14 +28,9 @@ public class PlayerControllerSimple : MonoBehaviour
     //Enemy
     GameObject enemy;
 
-    //Camera
-    Camera camera;
-
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-
-        camera = Camera.main;
 
         currentPlayerHP = _startPlayerHP;
     }
@@ -54,6 +49,7 @@ public class PlayerControllerSimple : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && _clickCounter > 1)
             {
                 MovePlayer();
+                Debug.Log("Player Moved");
                 _clickCounter = 0;
                 TurnHandler.Instance.TurnSwitcher();
             }
