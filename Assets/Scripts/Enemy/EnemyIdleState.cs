@@ -20,8 +20,8 @@ public class EnemyIdleState : EnemyBaseState
             enemy.elapsedTime = 0.0f;
             enemy.FindPath();
 
-            if (GameHandler.Instance.enemyCanAttackUp || GameHandler.Instance.enemyCanAttackDown
-                || GameHandler.Instance.enemyCanAttackLeft || GameHandler.Instance.enemyCanAttackRight) //enemy.pathArray.Count == 1 - checked this before
+            if (enemy.enemyCanAttackUp || enemy.enemyCanAttackDown
+                || enemy.enemyCanAttackLeft || enemy.enemyCanAttackRight) //enemy.pathArray.Count == 1 - checked this before
             {
                 enemy.TransitionToState(enemy.attackState);
             }

@@ -26,14 +26,26 @@ public class EnemyAttackState : EnemyBaseState
     {
         Debug.Log("Enemy attacks");
         //animation
-        if (GameHandler.Instance.enemyCanAttackUp)
+        if (enemy.enemyCanAttackUp)
+        {
             enemy.enemyAnimator.SetTrigger("BAUp");
-        if (GameHandler.Instance.enemyCanAttackDown)
+            enemy.enemyCanAttackUp = false;
+        }
+        if (enemy.enemyCanAttackDown)
+        {
             enemy.enemyAnimator.SetTrigger("BADown");
-        if (GameHandler.Instance.enemyCanAttackLeft)
+            enemy.enemyCanAttackDown = false;
+        }
+        if (enemy.enemyCanAttackLeft)
+        { 
             enemy.enemyAnimator.SetTrigger("BALeft");
-        if (GameHandler.Instance.enemyCanAttackRight)
+            enemy.enemyCanAttackLeft = false;
+        }
+        if (enemy.enemyCanAttackRight)
+        { 
             enemy.enemyAnimator.SetTrigger("BARight");
+            enemy.enemyCanAttackRight = false;
+        }
 
         enemy.playerController.currentPlayerHP = GameHandler.Instance.TakeDamage(enemy.EnemyDamage,
             enemy.playerController.currentPlayerHP);

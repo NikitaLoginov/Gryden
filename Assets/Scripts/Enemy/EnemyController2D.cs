@@ -50,6 +50,12 @@ public class EnemyController2D : MonoBehaviour
     //animations
     public Animator enemyAnimator;
 
+    // enemy attack booleans
+    public bool enemyCanAttackUp = false;
+    public bool enemyCanAttackDown = false;
+    public bool enemyCanAttackLeft = false;
+    public bool enemyCanAttackRight = false;
+
     void Start()
     {
         currentEnemyHP = _startEnemyHP;

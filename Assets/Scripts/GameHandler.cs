@@ -17,10 +17,10 @@ public class GameHandler : MonoBehaviour
 
     // enemy attack
 
-    public bool enemyCanAttackUp = false;
-    public bool enemyCanAttackDown = false;
-    public bool enemyCanAttackLeft = false;
-    public bool enemyCanAttackRight = false;
+    //public bool enemyCanAttackUp = false;
+    //public bool enemyCanAttackDown = false;
+    //public bool enemyCanAttackLeft = false;
+    //public bool enemyCanAttackRight = false;
 
     string enemyName;
     public string EnemyName { get { return enemyName;} private set { enemyName = value; } }
@@ -63,6 +63,16 @@ public class GameHandler : MonoBehaviour
         {
             //play animation
             Destroy(obj);
+
+            // stop enemy from attacking player if not near. not sure if needed
+            //if (enemyCanAttackDown)
+            //    enemyCanAttackDown = false;
+            //if (enemyCanAttackUp)
+            //    enemyCanAttackUp = false;
+            //if (enemyCanAttackLeft)
+            //    enemyCanAttackLeft = false;
+            //if (enemyCanAttackRight)
+            //    enemyCanAttackRight = false;
         }
     }
 }

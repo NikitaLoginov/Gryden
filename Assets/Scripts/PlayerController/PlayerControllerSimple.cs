@@ -44,10 +44,10 @@ public class PlayerControllerSimple : MonoBehaviour
                 FindPath();
                 _clickCounter++;
 
-                if (Input.GetMouseButtonDown(0) && _clickCounter > 0 && CheckIfCanBump())
-                {
-                    BumpAttack();
-                }
+                //if (Input.GetMouseButtonDown(0) && _clickCounter > 0 && CheckIfCanBump())
+                //{
+                //    BumpAttack();
+                //}
                 if (Input.GetMouseButtonDown(0) && _clickCounter > 1)
                 {
                     MovePlayer();
@@ -70,35 +70,35 @@ public class PlayerControllerSimple : MonoBehaviour
         else
             return false;
     }
-    void BumpAttack() //checking from what side we have enemy and bumping it
-    {
-        if (GameHandler.Instance.playerCanAttackUp)
-        {
-            GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkUp");
-            CalculateDamage();
-            GameHandler.Instance.playerCanAttackUp = false;
-        }
-        if (GameHandler.Instance.playerCanAttackDown)
-        {
-            GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkDown");
-            CalculateDamage();
-            GameHandler.Instance.playerCanAttackDown = false;
-        }
-        if (GameHandler.Instance.playerCanAttackLeft)
-        {
-            GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkLeft");
-            CalculateDamage();
-            GameHandler.Instance.playerCanAttackLeft = false;
-        }
-        if (GameHandler.Instance.playerCanAttackRight)
-        {
-            GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkRight");
-            CalculateDamage();
-            GameHandler.Instance.playerCanAttackRight = false;
-        }
+    //void BumpAttack() //checking from what side we have enemy and bumping it
+    //{
+    //    if (GameHandler.Instance.playerCanAttackUp)
+    //    {
+    //        GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkUp");
+    //        CalculateDamage();
+    //        GameHandler.Instance.playerCanAttackUp = false;
+    //    }
+    //    if (GameHandler.Instance.playerCanAttackDown)
+    //    {
+    //        GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkDown");
+    //        CalculateDamage();
+    //        GameHandler.Instance.playerCanAttackDown = false;
+    //    }
+    //    if (GameHandler.Instance.playerCanAttackLeft)
+    //    {
+    //        GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkLeft");
+    //        CalculateDamage();
+    //        GameHandler.Instance.playerCanAttackLeft = false;
+    //    }
+    //    if (GameHandler.Instance.playerCanAttackRight)
+    //    {
+    //        GameHandler.Instance.playerAnim.SetTrigger("PlayerAtkRight");
+    //        CalculateDamage();
+    //        GameHandler.Instance.playerCanAttackRight = false;
+    //    }
 
-        Debug.Log("Player can't attack");
-    }
+    //    Debug.Log("Player can't attack");
+    //}
 
     private void CalculateDamage()
     {

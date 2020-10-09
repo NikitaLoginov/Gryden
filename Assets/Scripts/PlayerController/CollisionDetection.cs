@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionDetection : MonoBehaviour
 {
     GameObject playerObj; //????
+    EnemyController2D enemy;
     PlayerControllerSimple player; //????
 
     Collider2D boxCollider;
@@ -25,6 +26,10 @@ public class CollisionDetection : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
 
         Debug.Log($"Player's current hp: {player.currentPlayerHP}");
+
+
+        //enemy stuff
+        enemy = GetComponent<EnemyController2D>();
 
     }
 
@@ -87,32 +92,32 @@ public class CollisionDetection : MonoBehaviour
             GameHandler.Instance.playerCanAttackRight = true;
         }
 
-        //enemy attacks
-        if (hit2dUp.collider != null && hit2dUp.collider.tag == "Player")
+        //enemy attacks shouldn't be in singleton!!!!
+        if (enemy != null && hit2dUp.collider != null && hit2dUp.collider.tag == "Player") // checking if enemy controller was found and collider hit something and if that something was player
         {
             Debug.Log("Ray hit player");
 
-            GameHandler.Instance.enemyCanAttackUp = true;
+            enemy.enemyCanAttackUp = true;
         }
 
-        if (hit2dDown.collider != null && hit2dDown.collider.tag == "Player")
+        if (enemy != null && hit2dDown.collider != null && hit2dDown.collider.tag == "Player")
         {
             Debug.Log("Ray hit player");
 
-            GameHandler.Instance.enemyCanAttackDown = true;
+            enemy.enemyCanAttackDown = true;
         }
-        if (hit2dLeft.collider != null && hit2dLeft.collider.tag == "Player")
+        if (enemy != null && hit2dLeft.collider != null && hit2dLeft.collider.tag == "Player")
         {
             Debug.Log("Ray hit player");
 
-            GameHandler.Instance.enemyCanAttackLeft = true;
+            enemy.enemyCanAttackLeft = true;
 
         }
-        if (hit2dRight.collider != null && hit2dRight.collider.tag == "Player")
+        if (enemy != null && hit2dRight.collider != null && hit2dRight.collider.tag == "Player")
         {
             Debug.Log("Ray hit player");
 
-            GameHandler.Instance.enemyCanAttackRight = true;
+            enemy.enemyCanAttackRight = true;
         }
     }
 }
