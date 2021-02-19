@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,32 +16,38 @@ public class GameHandler : MonoBehaviour
     public bool playerCanAttackLeft = false;
     public bool playerCanAttackRight = false;
 
-    // enemy attack
-
-    //public bool enemyCanAttackUp = false;
-    //public bool enemyCanAttackDown = false;
-    //public bool enemyCanAttackLeft = false;
-    //public bool enemyCanAttackRight = false;
-
     string enemyName;
     public string EnemyName { get { return enemyName;} private set { enemyName = value; } }
 
     //Animations
     public Animator playerAnim;
 
-
     public static GameHandler Instance; // singleton
 
     private void Awake()
     {
-        Instance = this; // singleton
+        if (Instance == null)
+        {
+            Instance = this; // singleton
+            //DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        player = GameObject.FindGameObjectWithTag("Player");
-
-        playerAnim = player.transform.GetChild(0).GetComponent<Animator>();
+        playerAnim = player.GetComponent<Animator>();
 
         Debug.Log("Enemy array length: " + enemies.Length);
+        
+        Instantiate(player, player.transform.position,Quaternion.identity);
+        var position = new Vector3(2.5f, 8.5f, 0f);
+        
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].transform.position = i == 0 ? new Vector3(position.x, position.y, position.z) : new Vector3(position.x += 3, position.y, position.z); // for 1st enemy : for others
+            Instantiate(enemies[i], enemies[i].transform.position,Quaternion.identity);
+        }
 
     }
 

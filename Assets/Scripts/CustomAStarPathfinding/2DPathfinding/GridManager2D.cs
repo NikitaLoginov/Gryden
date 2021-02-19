@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class GridManager2D : MonoBehaviour
@@ -69,7 +67,7 @@ public class GridManager2D : MonoBehaviour
 
                 nodes[row, col].MarkAsObstacle();
 
-                Debug.Log("2D nodes array lenght " + nodes.Length);
+                //Debug.Log("2D nodes array lenght " + nodes.Length);
             }
         }
     }

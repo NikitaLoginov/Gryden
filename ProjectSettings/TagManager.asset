@@ -3,14 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Waypoint
-  - LevelGoal
-  - Lava
-  - Obstacle
-  - Start
-  - End
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -20,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - Walls
-  - Player
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -47,22 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Ground
-    uniqueID: 372648155
-    locked: 0
-  - name: Lava
-    uniqueID: 3560677209
-    locked: 0
-  - name: Doors
-    uniqueID: 2036435283
-    locked: 0
-  - name: Enemy
-    uniqueID: 3423334005
-    locked: 0
-  - name: Player
-    uniqueID: 3766909381
-    locked: 0
-  - name: Walls
-    uniqueID: 249437531
     locked: 0
